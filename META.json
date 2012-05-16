@@ -1,0 +1,41 @@
+{
+   "abstract" : "Scrape f1.com for next race en championship.",
+   "author" : [
+      "Freek Kalter <freek@kalteronline.org>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 4.200005, CPAN::Meta::Converter version 2.120630",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "WWW-Scraper-F1",
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "6.31"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Data::Dumper" : "0",
+            "DateTime::Format::Duration" : "0",
+            "DateTime::Format::Natural" : "0",
+            "Exporter" : "0",
+            "HTML::TreeBuilder" : "0",
+            "LWP" : "0",
+            "Storable" : "0",
+            "Time::Piece" : "0",
+            "parent" : "0",
+            "perl" : "v5.14.0",
+            "warnings" : "0"
+         }
+      }
+   },
+   "release_status" : "stable",
+   "version" : "0.002"
+}
+

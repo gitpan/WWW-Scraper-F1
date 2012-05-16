@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-
+BEGIN { require v5.14.0; }
 
 use ExtUtils::MakeMaker 6.31;
 
@@ -19,8 +19,19 @@ my %WriteMakefileArgs = (
   'EXE_FILES' => [],
   'LICENSE' => 'perl',
   'NAME' => 'WWW::Scraper::F1',
-  'PREREQ_PM' => {},
-  'VERSION' => '0.001',
+  'PREREQ_PM' => {
+    'Data::Dumper' => '0',
+    'DateTime::Format::Duration' => '0',
+    'DateTime::Format::Natural' => '0',
+    'Exporter' => '0',
+    'HTML::TreeBuilder' => '0',
+    'LWP' => '0',
+    'Storable' => '0',
+    'Time::Piece' => '0',
+    'parent' => '0',
+    'warnings' => '0'
+  },
+  'VERSION' => '0.002',
   'test' => {
     'TESTS' => ''
   }
