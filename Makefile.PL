@@ -2,38 +2,42 @@
 use strict;
 use warnings;
 
-BEGIN { require v5.14.0; }
+use 5.014000;
 
-use ExtUtils::MakeMaker 6.31;
+use ExtUtils::MakeMaker 6.30;
 
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'Scrape f1.com for next race en championship.',
-  'AUTHOR' => 'Freek Kalter <freek@kalteronline.org>',
-  'BUILD_REQUIRES' => {},
-  'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.31'
+  "ABSTRACT" => "Scrape f1.com for next race en championship.",
+  "AUTHOR" => "Freek Kalter <freek\@kalteronline.org>",
+  "BUILD_REQUIRES" => {
+    "FindBin" => 0,
+    "Test::More" => 0
   },
-  'DISTNAME' => 'WWW-Scraper-F1',
-  'EXE_FILES' => [],
-  'LICENSE' => 'perl',
-  'NAME' => 'WWW::Scraper::F1',
-  'PREREQ_PM' => {
-    'Data::Dumper' => '0',
-    'DateTime::Format::Duration' => '0',
-    'DateTime::Format::Natural' => '0',
-    'Exporter' => '0',
-    'HTML::TreeBuilder' => '0',
-    'LWP' => '0',
-    'Storable' => '0',
-    'Time::Piece' => '0',
-    'parent' => '0',
-    'warnings' => '0'
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
   },
-  'VERSION' => '0.002',
-  'test' => {
-    'TESTS' => ''
+  "DISTNAME" => "WWW-Scraper-F1",
+  "EXE_FILES" => [],
+  "LICENSE" => "perl",
+  "NAME" => "WWW::Scraper::F1",
+  "PREREQ_PM" => {
+    "Data::Dumper" => 0,
+    "DateTime::Format::Duration" => 0,
+    "DateTime::Format::Natural" => 0,
+    "Exporter" => 0,
+    "HTML::TreeBuilder" => 0,
+    "LWP" => 0,
+    "Storable" => 0,
+    "Time::Piece" => 0,
+    "parent" => 0,
+    "strict" => 0,
+    "warnings" => 0
+  },
+  "VERSION" => "0.003",
+  "test" => {
+    "TESTS" => "t/*.t"
   }
 );
 

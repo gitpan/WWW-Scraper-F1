@@ -1,9 +1,10 @@
 package WWW::Scraper::F1;
-BEGIN {
-  $WWW::Scraper::F1::VERSION = '0.002';
+{
+  $WWW::Scraper::F1::VERSION = '0.003';
 }
 
 use v5.14;
+use strict;
 use warnings;
 
 use parent qw(Exporter);
@@ -13,14 +14,13 @@ use DateTime::Format::Natural;
 use DateTime::Format::Duration;
 use Time::Piece;
 use Storable;
-use Data::Dumper;
+use Data::Dumper qw(Dumper);
 
-our @EXPORT = qw(get_upcoming get_top);
+our @EXPORT = qw(get_upcoming_race get_top_championship);
 
-sub get_upcoming {
+sub get_upcoming_race{
     my $total_info = &get_info;
     my $race_info = $total_info->{'race_info'};
-    my $output_format = shift;
     my $output    = '';
 
     my $now = $race_info->{'now'};
@@ -43,57 +43,28 @@ sub get_upcoming {
     if ( $now > $dt ) {
         $until_race_time .= " ago";
     }
+    $output = { 'city' => $race_info->{city},
+                'country' => $race_info->{country},
+                'time' => $dt->strftime("%d/%m/%y %T"),
+                'countdown' => $until_race_time,
+    };
 
-    $output = "$race_info->{city}, $race_info->{country}\n$until_race_time\n";
-    if ( $output_format->{all} ) {
-        open my $handle, '>', $output_format->{all} or die "Cannot open file: $!";
-        print $handle $output;
-    }
-    elsif ( $output_format->{upcoming} ) {
-        open my $handle, '>', $output_format->{upcoming} or die "Cannot open file: $!";
-        print $handle $output;
-    }
-    else {
-        print $output;
-    }
+    return $output;
 }
 
-sub get_top {
+sub get_top_championship{
+    my $options = shift;
+    $options->{points} = $options->{points} || "yes";
+    $options->{length} = $options->{length} || 5;
     my $total_info = &get_info;
     my $championship_table = $total_info->{'championship_info'};
-    my ( $top_length, $points, $output_ref ) = @_;
-    my %output = %$output_ref;
-    my $output = '';
 
-    for ( my $i = 1 ; $i <= $top_length ; $i++ ) {
-        given ($points) {
-            when (/no/) {
-                $output .= sprintf( "%d %-20s\n",
-                    $i, $championship_table->[$i]->{'driver'} );
-            }
-            when (/just/) {
-                $output .=
-                  sprintf( "%d\n", $championship_table->[$i]->{'points'} );
-            }
-            default {    # default, print both tab separated
-                $output .= sprintf( "%d %-20s %-3s\n",
-                    $i,
-                    $championship_table->[$i]->{'driver'},
-                    $championship_table->[$i]->{'points'} );
-            }
-        }
+    my @ra = ();
+    for ( my $i = 1 ; $i <= $options->{length} ; $i++ ) {
+       my $tuple = { 'pos' => $i , 'driver' => $championship_table->[$i]->{'driver'} , 'points' =>  $championship_table->[$i]->{'points'} };
+       push @ra, $tuple;
     }
-    if ( $output{all} ) {
-        open my $handle, '>>', $output{all} or die "Cannot open file: $!";
-        print $handle $output;
-    }
-    elsif ( $output{top} ) {
-        open my $handle, '>', $output{top} or die "Cannot open file: $!";
-        print $handle $output;
-    }
-    else {
-        print $output;
-    }
+    return \@ra;
 }
 
 sub get_info {
@@ -206,9 +177,57 @@ __END__
 
 =pod
 
-=head1 NAME
+=encoding utf-8
 
-WWW::Scraper::F1 
+=head1 NAME
+                                        
+WWW::Scraper::F1 - Use f1.com race data seamlessly in perl.
 
 =head1 SYNOPSIS   
-Scrape info for upcoming race and current championship from formula1.com.
+
+   use WWW::Scraper:F1;
+
+   my $top      = get_top_championship( { length => 5 } );
+   my $upcoming = get_upcoming_race();
+
+=head1 FUNCTIONS
+
+
+=head2 get_top_championship()
+
+This functions retrieves the current championshiip.  it returns a reference to an array of hashes. By default it
+returns the top 5 drivers like this.
+
+   [
+       { name Sebastian Vettel , points 55 , team Red Bull Racing }
+       { name Fernando Alonso  , points 40 , team Ferrari }
+   ]
+
+You can specify options via a hash reference C<get_top_chamionship( {length => 3} )>
+
+=head2 get_upcoming_race()
+
+This function returns a reference to hash. The hash elements contains information about the upcoming race.
+The hash looks like this:
+
+   {
+     'country'    => 'Canada',
+     'city'       => 'Montreal',
+     'time'       => '10/06/12 20:00:00',
+     'countdown'  => '7 days 21 hours'
+   }
+
+
+=head1 INTERNALS
+
+This module caches the results fetch from f1.com for futher use. Since the actual data only changes after a race, it only needs to fetch it again if the cache is older then the previous race. 
+
+=head1 AUTHOR
+
+Freek Kalter
+freek@kalteronline.org
+http://kalteronline.org
+
+=head1 COPYRIGHT
+
+This module is distributed under the same lincense as perl5 itself.
