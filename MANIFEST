@@ -7,11 +7,7 @@ Makefile.PL
 README.mkdn
 dist.ini
 example/example.pl
-f1.cache
-html-help/help.html
-html-help/style.css
 lib/WWW/Scraper/F1.pm
-pod2htmd.tmp
-pod2htmi.tmp
 script/copy_files_to_scm.pl
 t/001_basic.t
+t/pod.t

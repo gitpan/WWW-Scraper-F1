@@ -4,7 +4,7 @@
       "Freek Kalter <freek@kalteronline.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300016, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Dist::Zilla version 4.300017, CPAN::Meta::Converter version 2.120921",
    "license" : [
       "perl_5"
    ],
@@ -30,7 +30,7 @@
             "Storable" : "0",
             "Time::Piece" : "0",
             "parent" : "0",
-            "perl" : "v5.14.0",
+            "perl" : "5.006",
             "strict" : "0",
             "warnings" : "0"
          }
@@ -43,6 +43,6 @@
       }
    },
    "release_status" : "stable",
-   "version" : "0.003"
+   "version" : "0.004"
 }
 
