@@ -24,7 +24,7 @@ requires:
   Storable: 0
   Time::Piece: 0
   parent: 0
-  perl: 5.006
+  perl: v5.8.0
   strict: 0
   warnings: 0
-version: 0.004
+version: 0.005

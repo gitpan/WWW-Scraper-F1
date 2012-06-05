@@ -1,8 +1,9 @@
 package WWW::Scraper::F1;
 {
-  $WWW::Scraper::F1::VERSION = '0.004';
+  $WWW::Scraper::F1::VERSION = '0.005';
 }
 
+use v5.8;
 use strict;
 use warnings;
 
@@ -137,8 +138,9 @@ sub extract_info_from_web_content {
     $race_info->{city} =
       $root->find_by_attribute( "id", "city_name" )->as_trimmed_text();
 
-    $race_info->{city} =
-      ucfirst lc $race_info->{city} =~ s/[\P{alpha}]//r;   #strip the html gunk, by removing all Non-alpha chars
+    $race_info->{city} =~ s/[\P{alpha}]//;
+    $race_info->{city} = ucfirst lc $race_info->{city};   #strip the html gunk, by removing all Non-alpha chars
+
     $total_info->{'race_info'} = $race_info;
 
     ################   extract championship info from web_content

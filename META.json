@@ -30,12 +30,15 @@
             "Storable" : "0",
             "Time::Piece" : "0",
             "parent" : "0",
-            "perl" : "5.006",
+            "perl" : "v5.8.0",
             "strict" : "0",
             "warnings" : "0"
          }
       },
       "test" : {
+         "recommends" : {
+            "Test::Pod" : "1.00"
+         },
          "requires" : {
             "FindBin" : "0",
             "Test::More" : "0"
@@ -43,6 +46,6 @@
       }
    },
    "release_status" : "stable",
-   "version" : "0.004"
+   "version" : "0.005"
 }
 
