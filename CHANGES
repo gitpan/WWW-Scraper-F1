@@ -1,3 +1,10 @@
+v0.006
+   
+   * Fuck it, update your perl 5.14, requered now.
+   * Better testing, done localy now on included asset file
+   * Proper unicode compatibility.
+   * Added option to ignore the cache file, and always srape from scratch.
+                    
 v0.005
 
    * Fixed build problems on perl version under 5.14.

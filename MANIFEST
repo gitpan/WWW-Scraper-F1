@@ -8,6 +8,10 @@ README.mkdn
 dist.ini
 example/example.pl
 lib/WWW/Scraper/F1.pm
+script/before_build.sh
 script/copy_files_to_scm.pl
+script/travis_build.sh
 t/001_basic.t
+t/assets/2012.html
+t/assets/default.html
 t/pod.t
