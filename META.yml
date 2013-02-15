@@ -16,19 +16,19 @@ meta-spec:
   version: 1.4
 name: WWW-Scraper-F1
 requires:
-  DateTime::Format::Duration: 0
-  DateTime::Format::Natural: 0
-  Encode: 0
+  DateTime::Format::Duration: 1.03
+  DateTime::Format::Natural: 1.00
+  Encode: 2.47
   Exporter: 0
-  HTML::TreeBuilder: 0
-  LWP: 0
-  Storable: 0
+  HTML::TreeBuilder: 5.03
+  LWP: 6.04
+  Storable: 2.39
   Test::Pod: 0
-  Time::Piece: 0
+  Time::Piece: 1.20
   charnames: 0
   open: 0
   parent: 0
   perl: v5.14.0
   strict: 0
   warnings: 0
-version: 0.006
+version: 0.007

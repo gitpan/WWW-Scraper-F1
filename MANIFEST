@@ -13,5 +13,6 @@ script/copy_files_to_scm.pl
 script/travis_build.sh
 t/001_basic.t
 t/assets/2012.html
+t/assets/Dist-Zilla-Plugin-ReadmeAnyFromPod-0.2.tar.gz
 t/assets/default.html
 t/pod.t

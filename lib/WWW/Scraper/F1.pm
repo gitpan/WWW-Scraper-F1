@@ -1,6 +1,6 @@
 package WWW::Scraper::F1;
 {
-  $WWW::Scraper::F1::VERSION = '0.006';
+  $WWW::Scraper::F1::VERSION = '0.007';
 }
 
 use v5.14;
@@ -11,13 +11,13 @@ use open qw(:std :utf8);
 use charnames qw(:full :short);
 
 use parent qw(Exporter);
-use Encode;
-use HTML::TreeBuilder;
-use LWP;
-use DateTime::Format::Natural;
-use DateTime::Format::Duration;
-use Time::Piece;
-use Storable;
+use Encode 2.47;
+use HTML::TreeBuilder 5.03;
+use LWP 6.04;
+use DateTime::Format::Natural 1.00;
+use DateTime::Format::Duration 1.03;
+use Time::Piece 1.20;
+use Storable 2.39;
 
 our @EXPORT = qw(get_upcoming_race get_top_championship);
 
@@ -249,8 +249,8 @@ This functions retrieves the current championship. It returns a reference to an 
 returns the top 5 drivers like this.
 
    [
-       { name Sebastian Vettel , points 55 , team Red Bull Racing }
-       { name Fernando Alonso  , points 40 , team Ferrari }
+       { name => "Sebastian Vettel" , points => 55 , team => "Red Bull Racing" }
+       { name => "Fernando Alonso"  , points => 40 , team => "Ferrari" }
    ]
 
 You can specify options via a hash reference C<< get_top_chamionship( {length => 3} ) >>
